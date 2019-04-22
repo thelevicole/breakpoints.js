@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript breakpoints.js for Bootstrap by Levi Cole</title>
+	<meta name="description" content="">
+
+	<meta property="og:title" content="Javascript breakpoints.js for Bootstrap by Levi Cole">
+	<meta property="og:site_name" content="">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://thelevicole.com/breakpoints.js/">
+	<meta property="og:image" content="">
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="https://thelevicole.com/breakpoints.js/" />
+	<meta name="twitter:title" content="Javascript breakpoints.js for Bootstrap by Levi Cole">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image" content="">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+	<link rel="stylesheet" href="css/home.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/thelevicole/breakpoints.js@0.0.1-pre-alpha/dist/breakpoints.js"></script>
+	<script>var bp = new Breakpoints();</script>
+</head>
+<body>
+
+	<section class="py-5 bg-primary text-white">
+		<div class="container">
+			<div class="text-center my-5 w-75 mx-auto">
+				<h1>Javascript breakpoints for Bootstrap</h1>
+				<p>A simple to use javascript library for attaching callbacks to Bootstrap sepecific breakpoints. The idea is to mimic a similiar style functionality as the Bootstrap SASS mixins.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5 bg-light" id="requirements">
+		<div class="container">
+			<div class="text-center my-5 w-50 mx-auto">
+				<h2>Requirements</h2>
+				<p>This library only works with the bootstrap version <strong>4 and up</strong> after they added <code>:root</code> <a href="https://getbootstrap.com/docs/4.0/getting-started/theming/#available-variables" target="_blank" rel="noopener nofollow">breakpoint variables.</a></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5" id="usage">
+		<div class="container">
+			<div class="text-center my-5">
+				<h2 class="mb-5">Usage</h2>
+				<p><strong>1.</strong> Include the library via jsDelivr CDN</p>
+				<pre class="mb-5">https://cdn.jsdelivr.net/gh/thelevicole/breakpoints.js@0.0.1-pre-alpha/dist/breakpoints.js</pre>
+
+				<p><strong>2.</strong> Initiate library</p>
+				<pre class="mb-5">var bp = new Breakpoints();</pre>
+
+				<p><strong>3.</strong> Start attaching callbacks</p>
+				<pre>var bp = new Breakpoints();
+
+bp.up( 'md', function() {
+    document.body.style.background = '#f00';
+} );</pre>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5 bg-light" id="methods">
+		<div class="container">
+			<div class="text-center my-5">
+				<h2 class="mb-5">Methods</h2>
+
+				<div class="table-responsive">
+					<table class="table table-bordered bg-white small">
+						<thead>
+							<tr>
+								<th class="w-25">Method</th>
+								<th class="w-25">Description</th>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="bg-secondary text-white">
+								<td colspan="3">
+									Attachable
+								</td>
+							</tr>
+							<tr>
+								<td><code>up( name, callback )</code></td>
+								<td>
+									Attaches a callback to any screen width above the named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">bp.up( 'lg', function() {
+	    console.log( 'I only run on larger screens' );
+	} )</pre><br>
+								</td>
+							</tr>
+							<tr>
+								<td><code>down( name, callback )</code></td>
+								<td>
+									Attaches a callback to any screen width below the named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">bp.down( 'sm', function() {
+	    console.log( 'I only run on smaller screens' );
+	} )</pre><br>
+								</td>
+							</tr>
+							<tr>
+								<td><code>only( name, callback )</code></td>
+								<td>
+									Attaches a callback to any screen width within the minimum and maximum widths of the named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">bp.only( 'md', function() {
+	    console.log( 'I only run on screen widths between 768px and 991.98px' );
+	} )</pre><br>
+								</td>
+							</tr>
+							<tr>
+								<td><code>between( lower, upper, callback )</code></td>
+								<td>
+									Attaches a callback to any screen width that spans across the minimum and maximum widths of the two named breakpoints.
+								</td>
+								<td>
+									<pre class="m-0">bp.between( 'sm', 'xl', function() {
+	    console.log( 'I run on any screen width between 576px and 1199.98px' );
+	} )</pre><br>
+								</td>
+							</tr>
+
+							<tr class="bg-secondary text-white">
+								<td colspan="3">
+									Returnable
+								</td>
+							</tr>
+							<tr>
+								<td><code>get( name )</code></td>
+								<td>
+									Returns a numeric value of the breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">var margins = window.innerWidth - bp.get( 'md' );</pre>
+								</td>
+							</tr>
+							<tr>
+								<td><code>isUp( name )</code></td>
+								<td>
+									Returns <code>true</code> if screen width is <strong>greater than</strong> named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">if ( bp.isUp( 'md' ) ) {
+	    // Do something
+	}</pre>
+								</td>
+							</tr>
+							<tr>
+								<td><code>isDown( name )</code></td>
+								<td>
+									Returns <code>true</code> if screen width is <strong>less than</strong> named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">if ( bp.isDown( 'md' ) ) {
+	    // Do something
+	}</pre>
+								</td>
+							</tr>
+							<tr>
+								<td><code>isOnly( name )</code></td>
+								<td>
+									Returns <code>true</code> if screen width is within the minimum and maximum widths of the named breakpoint.
+								</td>
+								<td>
+									<pre class="m-0">if ( bp.isOnly( 'md' ) ) {
+	    // Do something
+	}</pre>
+								</td>
+							</tr>
+							<tr>
+								<td><code>isBetween( lower, upper )</code></td>
+								<td>
+									Returns <code>true</code> if screen width is within the minimum and maximum widths of the two named breakpoints.
+								</td>
+								<td>
+									<pre class="m-0">if ( bp.isBetween( 'md', 'lg' ) ) {
+	    // Do something
+	}</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5" id="examples">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="mb-5">Examples</h2>
+			</div>
+			<div class="row">
+
+				<div class="col-md-6">
+					<div class="card my-3">
+						<div class="card-header">
+							<code>up( name )</code> and <code>down( name )</code>
+						</div>
+						<div class="card-body">
+							<pre>var example1 = document.querySelector( '#example-1' );
+
+bp.up( 'lg', function() {
+    example1.classList.remove( 'bg-info' );
+    example1.classList.add( 'bg-success' );
+} );
+
+bp.down( 'lg', function() {
+    example1.classList.remove( 'bg-success' );
+    example1.classList.add( 'bg-info' );
+} );</pre>
+							<div class="p-4 text-white text-center" id="example-1">
+								I go green when screen is greater than `lg` and then blue when lower than `lg`.
+							</div>
+							<script>
+								var example1 = document.querySelector( '#example-1' );
+								bp.up( 'lg', function() {
+									example1.classList.remove( 'bg-info' );
+									example1.classList.add( 'bg-success' );
+								} );
+
+								bp.down( 'lg', function() {
+									example1.classList.remove( 'bg-success' );
+									example1.classList.add( 'bg-info' );
+								} );
+							</script>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="card my-3">
+						<div class="card-header">
+							<code>isBetween( lower, upper )</code>
+						</div>
+						<div class="card-body">
+							<pre>var example2 = document.querySelector( '#example-2' );
+
+var resizer = function() {
+    if ( bp.isBetween( 'md', 'lg' ) ) {
+        example2.innerHTML = 'The screen width <strong>IS</strong> between `md` and `lg`';
+        example2.classList.remove( 'bg-danger' );
+        example2.classList.add( 'bg-success' );
+    } else {
+        example2.innerHTML = 'The screen width is <strong>NOT</strong> between `md` and `lg`';
+        example2.classList.remove( 'bg-success' );
+        example2.classList.add( 'bg-danger' );
+    }
+};
+
+window.addEventListener( 'load', resizer );
+window.addEventListener( 'resize', resizer );</pre>
+							<div class="p-4 text-white text-center" id="example-2">
+								Javascript hasn't run.
+							</div>
+							<script>
+								var example2 = document.querySelector( '#example-2' );
+								var resizer = function() {
+									if ( bp.isBetween( 'md', 'lg' ) ) {
+										example2.innerHTML = 'The screen width <strong>IS</strong> between `md` and `lg`';
+										example2.classList.remove( 'bg-danger' );
+										example2.classList.add( 'bg-success' );
+									} else {
+										example2.innerHTML = 'The screen width is <strong>NOT</strong> between `md` and `lg`';
+										example2.classList.remove( 'bg-success' );
+										example2.classList.add( 'bg-danger' );
+									}
+								};
+								window.addEventListener( 'load', resizer );
+								window.addEventListener( 'resize', resizer );
+							</script>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
