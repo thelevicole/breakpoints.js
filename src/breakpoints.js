@@ -1,22 +1,22 @@
 function Breakpoints( names ) {
-	
+
 	/**
 	 * Store the window width as a local variable
-	 * 
+	 *
 	 * @type {Number}
 	 */
 	this.windowWidth = window.innerWidth;
 
 	/**
 	 * Store the passed breakpoint names locally
-	 * 
+	 *
 	 * @type {Array}
 	 */
 	this.keys = names || [ 'xs', 'sm', 'md', 'lg', 'xl' ];
 
 	/**
 	 * Empty object for storing breakpoint key/values
-	 * 
+	 *
 	 * @type {Object}
 	 */
 	this.gridBreakpoints = {};
@@ -82,14 +82,14 @@ function Breakpoints( names ) {
 
 /**
  * Hold all event listeners in a contained array
- * 
+ *
  * @type	{Array}
  */
 Breakpoints.prototype.listeners = [];
 
 /**
  * Add event lister
- * 
+ *
  * @param	{String}	event	Name of event to listen for
  * @param	{Function}	callback
  * @return	{Void}
@@ -103,7 +103,7 @@ Breakpoints.prototype.on = function( event, callback ) {
 
 /**
  * Trigger an event
- * 
+ *
  * @param	{String}	event	Name of event to listen for
  * @param	{Mixed}		args	These args are passed to the callback function
  * @return	{Void}
@@ -119,7 +119,7 @@ Breakpoints.prototype.trigger = function( event, ...args ) {
 
 /**
  * Refresh the grid breakpoints object
- * 
+ *
  * @return	{Object}
  */
 Breakpoints.prototype.refresh = function() {
@@ -138,7 +138,7 @@ Breakpoints.prototype.refresh = function() {
 
 /**
  * Get breakpoint value by name
- * 
+ *
  * @param	{String}	name
  * @return	{Number}
  */
@@ -148,7 +148,7 @@ Breakpoints.prototype.get = function( name ) {
 
 /**
  * Get the next breakpoint in object
- * 
+ *
  * @param	{String}	name
  * @return	{Object|null}
  */
@@ -168,7 +168,7 @@ Breakpoints.prototype.next = function( name ) {
 
 /**
  * Get a breakpoints minimum width
- * 
+ *
  * @param	{String}	name
  * @return	{Number}
  */
@@ -179,7 +179,7 @@ Breakpoints.prototype.min = function( name ) {
 
 /**
  * Get a breakpoints maximum width
- * 
+ *
  * @param	{String}	name
  * @return	{Number}
  */
@@ -193,7 +193,7 @@ Breakpoints.prototype.max = function( name ) {
 
 /**
  * Check if the window width is wider than breakpoint
- * 
+ *
  * @param	{String}	name
  * @return	{Boolean}
  */
@@ -203,7 +203,7 @@ Breakpoints.prototype.isUp = function( name ) {
 
 /**
  * Check if the window width is smaller than breakpoint
- * 
+ *
  * @param	{String}	name
  * @return	{Boolean}
  */
@@ -213,7 +213,7 @@ Breakpoints.prototype.isDown = function( name ) {
 
 /**
  * Check if the window width is wider than lower and less that upper
- * 
+ *
  * @param	{String}	lower
  * @param	{String}	upper
  * @return	{Boolean}
@@ -235,7 +235,7 @@ Breakpoints.prototype.isBetween = function( lower, upper ) {
 
 /**
  * Check if the window width between the breakpoint's minimum and maximum widths
- * 
+ *
  * @param	{String}	name
  * @return	{Boolean}
  */
@@ -245,7 +245,7 @@ Breakpoints.prototype.isOnly = function( name ) {
 
 /**
  * Alias of `.on('up.${name}')`
- * 
+ *
  * @param	{String}	name
  * @param	{Function}	callback
  */
@@ -255,7 +255,7 @@ Breakpoints.prototype.up = function( name, callback ) {
 
 /**
  * Alias of `.on('down.${name}')`
- * 
+ *
  * @param	{String}	name
  * @param	{Function}	callback
  */
@@ -264,8 +264,8 @@ Breakpoints.prototype.down = function( name, callback ) {
 };
 
 /**
- * Alias of `.on('only.${name}')`
- * 
+ * Alias of `.on('between.${lower}-${upper}')`
+ *
  * @param	{String}	lower
  * @param	{String}	upper
  * @param	{Function}	callback
@@ -276,7 +276,7 @@ Breakpoints.prototype.between = function( lower, upper, callback ) {
 
 /**
  * Alias of `.on('only.${name}')`
- * 
+ *
  * @param	{String}	name
  * @param	{Function}	callback
  */
