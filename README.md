@@ -35,9 +35,9 @@ window.onresize = function() {
 If you have customised the Bootstrap grid and have non standard breakpoints ([see here](https://getbootstrap.com/docs/4.3/layout/grid/#grid-tiers)), you can defined these like so:
 
 ```javascript
-var bp = new Breakpoints( [ 'small', 'medum', 'large' ] );
+var bp = new Breakpoints( [ 'small', 'medium', 'large' ] );
 
-bp.up( 'medum', function() {
+bp.up( 'medium', function() {
 	...
 } );
 
