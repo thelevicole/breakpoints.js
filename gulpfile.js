@@ -1,7 +1,8 @@
 'use strict';
 
 // Generic
-const gulp       = require( 'gulp' );
+const gulp       	= require( 'gulp' );
+const browserSync	= require( 'browser-sync' ).create();
 
 // Stylesheets
 const sass         = require( 'gulp-sass' );
@@ -59,6 +60,13 @@ gulp.task('watch', function() {
 
 	gulp.watch(paths.input.stylesheets, ['stylesheets']);
 	gulp.watch(paths.input.javascripts, ['javascripts']);
+
+	browserSync.init( {
+		notify: false,
+		server: {
+			baseDir: './'
+		}
+	} );
 
 });
 

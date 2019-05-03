@@ -31,263 +31,311 @@
 
 	<section class="py-5 bg-primary text-white">
 		<div class="container">
-			<div class="text-center my-5 w-75 mx-auto">
-				<h1>Javascript breakpoints for Bootstrap</h1>
-				<p>A simple to use javascript library for attaching callbacks to Bootstrap sepecific breakpoints. The idea is to mimic a similiar style functionality as the Bootstrap SASS mixins.</p>
+			<div class="row justify-content-center">
+				<div class="col my-5">
+					<h1>Javascript breakpoints for Bootstrap</h1>
+					<p>A simple to use javascript library for attaching callbacks to Bootstrap sepecific breakpoints. The idea is to mimic a similiar style functionality as the <a href="https://github.com/twbs/bootstrap/blob/master/scss/mixins/_breakpoints.scss" class="text-white" target="_blank" rel="noopener nofollow">Bootstrap SASS mixins</a>.</p>
+				</div>
+				<div class="col-3">
+					<div class="list-group">
+						<a href="#requirements" class="list-group-item">1. Requirements</a>
+						<a href="#usage" class="list-group-item">2. Basic usage</a>
+						<a href="#methods" class="list-group-item">3. Methods</a>
+						<a href="#examples" class="list-group-item disabled">4. Examples <small>(coming soon)</small></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
 	<section class="py-5 bg-light" id="requirements">
 		<div class="container">
-			<div class="text-center my-5 w-50 mx-auto">
-				<h2>Requirements</h2>
-				<p>This library only works with the bootstrap version <strong>4 and up</strong> after they added <code>:root</code> <a href="https://getbootstrap.com/docs/4.0/getting-started/theming/#available-variables" target="_blank" rel="noopener nofollow">breakpoint variables.</a></p>
+			<div class="row justify-content-center">
+				<div class="col my-5">
+					<h2>Requirements</h2>
+					<p>This library works best with <strong>Bootstrap 4 and up</strong> after <code>:root</code> <a href="https://getbootstrap.com/docs/4.0/getting-started/theming/#available-variables" target="_blank" rel="noopener nofollow">breakpoint variables</a> were added.</p>
+				</div>
 			</div>
 		</div>
 	</section>
 
 	<section class="py-5" id="usage">
 		<div class="container">
-			<div class="text-center my-5">
-				<h2 class="mb-5">Usage</h2>
-				<p><strong>1.</strong> Include the library via jsDelivr CDN</p>
-				<pre class="mb-5">https://cdn.jsdelivr.net/gh/thelevicole/breakpoints.js@0.0.1-pre-alpha/dist/breakpoints.js</pre>
+			<div class="row justify-content-center">
+				<div class="col my-5">
+					<h2 class="mb-5">Basic usage</h2>
+					<p><strong>1.</strong> Include the library via jsDelivr CDN</p>
+					<div class="mb-5">
+						<pre><code class="lang-js">&lt;script src="https://cdn.jsdelivr.net/gh/thelevicole/breakpoints.js@0.0.1-pre-alpha/dist/breakpoints.js"&gt;&lt;/script&gt;</code></pre>
+					</div>
 
-				<p><strong>2.</strong> Initiate library</p>
-				<pre class="mb-5">var bp = new Breakpoints();</pre>
+					<p><strong>2.</strong> Initiate library</p>
+					<div class="mb-5">
+						<pre><code class="lang-js">var bp = new Breakpoints();</code></pre>
+					</div>
 
-				<p><strong>3.</strong> Start attaching callbacks</p>
-				<pre>var bp = new Breakpoints();
-
+					<p><strong>3.</strong> Start using...</p>
+					<pre><code class="lang-js">// Set body color to red on 768px and up
 bp.up( 'md', function() {
-    document.body.style.background = '#f00';
-} );</pre>
+	document.body.style.background = '#f00';
+} );
+
+// Set body color to green on 768px and down
+bp.down( 'md', function() {
+	document.body.style.background = '#0f0';
+} );</code></pre>
+				</div>
 			</div>
 		</div>
 	</section>
 
 	<section class="py-5 bg-light" id="methods">
 		<div class="container">
-			<div class="text-center my-5">
-				<h2 class="mb-5">Methods</h2>
+			<div class="row justify-content-center">
+				<div class="col my-5">
+					<h2 class="mb-5">Methods</h2>
 
-				<div class="table-responsive">
-					<table class="table table-bordered bg-white small">
-						<thead>
-							<tr>
-								<th class="w-25">Method</th>
-								<th class="w-25">Description</th>
-								<th>Example</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="bg-secondary text-white">
-								<td colspan="3">
-									Attachable
-								</td>
-							</tr>
-							<tr>
-								<td><code>up( name, callback )</code></td>
-								<td>
-									Attaches a callback to any screen width above the named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">bp.up( 'lg', function() {
-	    console.log( 'I only run on larger screens' );
-	} )</pre><br>
-								</td>
-							</tr>
-							<tr>
-								<td><code>down( name, callback )</code></td>
-								<td>
-									Attaches a callback to any screen width below the named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">bp.down( 'sm', function() {
-	    console.log( 'I only run on smaller screens' );
-	} )</pre><br>
-								</td>
-							</tr>
-							<tr>
-								<td><code>only( name, callback )</code></td>
-								<td>
-									Attaches a callback to any screen width within the minimum and maximum widths of the named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">bp.only( 'md', function() {
-	    console.log( 'I only run on screen widths between 768px and 991.98px' );
-	} )</pre><br>
-								</td>
-							</tr>
-							<tr>
-								<td><code>between( lower, upper, callback )</code></td>
-								<td>
-									Attaches a callback to any screen width that spans across the minimum and maximum widths of the two named breakpoints.
-								</td>
-								<td>
-									<pre class="m-0">bp.between( 'sm', 'xl', function() {
-	    console.log( 'I run on any screen width between 576px and 1199.98px' );
-	} )</pre><br>
-								</td>
-							</tr>
+					<div class="table-responsive">
+						<table class="table table-bordered bg-white small">
+							<thead>
+								<tr>
+									<th class="w-25">Method</th>
+									<th>Description</th>
+									<th>Example</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="bg-secondary text-white">
+									<td colspan="3">
+										<strong>Attachable</strong>
+									</td>
+								</tr>
+								<tr>
+									<td><code>up( name, callback )</code></td>
+									<td>
+										Attaches a callback to any screen width above the named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">bp.up( 'lg', function() {
+	console.log( 'I only run on larger screens' );
+} );</code></pre><br>
+									</td>
+								</tr>
+								<tr>
+									<td><code>down( name, callback )</code></td>
+									<td>
+										Attaches a callback to any screen width below the named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">bp.down( 'sm', function() {
+	console.log( 'I only run on smaller screens' );
+} );</code></pre><br>
+									</td>
+								</tr>
+								<tr>
+									<td><code>only( name, callback )</code></td>
+									<td>
+										Attaches a callback to any screen width within the minimum and maximum widths of the named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">bp.only( 'md', function() {
+	console.log( 'I only run on screen widths between 768px and 991.98px' );
+} );</code></pre><br>
+									</td>
+								</tr>
+								<tr>
+									<td><code>between( lower, upper, callback )</code></td>
+									<td>
+										Attaches a callback to any screen width that spans across the minimum and maximum widths of the two named breakpoints.
+									</td>
+									<td>
+										<pre><code class="lang-js">bp.between( 'sm', 'xl', function() {
+	console.log( 'I run on any screen width between 576px and 1199.98px' );
+} );</code></pre><br>
+									</td>
+								</tr>
 
-							<tr class="bg-secondary text-white">
-								<td colspan="3">
-									Returnable
-								</td>
-							</tr>
-							<tr>
-								<td><code>get( name )</code></td>
-								<td>
-									Returns a numeric value of the breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">var margins = window.innerWidth - bp.get( 'md' );</pre>
-								</td>
-							</tr>
-							<tr>
-								<td><code>isUp( name )</code></td>
-								<td>
-									Returns <code>true</code> if screen width is <strong>greater than</strong> named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">if ( bp.isUp( 'md' ) ) {
-	    // Do something
-	}</pre>
-								</td>
-							</tr>
-							<tr>
-								<td><code>isDown( name )</code></td>
-								<td>
-									Returns <code>true</code> if screen width is <strong>less than</strong> named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">if ( bp.isDown( 'md' ) ) {
-	    // Do something
-	}</pre>
-								</td>
-							</tr>
-							<tr>
-								<td><code>isOnly( name )</code></td>
-								<td>
-									Returns <code>true</code> if screen width is within the minimum and maximum widths of the named breakpoint.
-								</td>
-								<td>
-									<pre class="m-0">if ( bp.isOnly( 'md' ) ) {
-	    // Do something
-	}</pre>
-								</td>
-							</tr>
-							<tr>
-								<td><code>isBetween( lower, upper )</code></td>
-								<td>
-									Returns <code>true</code> if screen width is within the minimum and maximum widths of the two named breakpoints.
-								</td>
-								<td>
-									<pre class="m-0">if ( bp.isBetween( 'md', 'lg' ) ) {
-	    // Do something
-	}</pre>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								<tr class="bg-secondary text-white">
+									<td colspan="3">
+										<strong>Returnable</strong>
+									</td>
+								</tr>
+								<tr>
+									<td><code>get( name )</code></td>
+									<td>
+										Returns a numeric value of the breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">var margins = window.innerWidth - bp.get( 'md' );</code></pre>
+									</td>
+								</tr>
+								<tr>
+									<td><code>isUp( name )</code></td>
+									<td>
+										Returns <code>true</code> if screen width is <strong>greater than</strong> named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">if ( bp.isUp( 'md' ) ) {
+	// Do something
+}</code></pre>
+									</td>
+								</tr>
+								<tr>
+									<td><code>isDown( name )</code></td>
+									<td>
+										Returns <code>true</code> if screen width is <strong>less than</strong> named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">if ( bp.isDown( 'md' ) ) {
+	// Do something
+}</code></pre>
+									</td>
+								</tr>
+								<tr>
+									<td><code>isOnly( name )</code></td>
+									<td>
+										Returns <code>true</code> if screen width is within the minimum and maximum widths of the named breakpoint.
+									</td>
+									<td>
+										<pre><code class="lang-js">if ( bp.isOnly( 'md' ) ) {
+	// Do something
+}</code></pre>
+									</td>
+								</tr>
+								<tr>
+									<td><code>isBetween( lower, upper )</code></td>
+									<td>
+										Returns <code>true</code> if screen width is within the minimum and maximum widths of the two named breakpoints.
+									</td>
+									<td>
+										<pre><code class="lang-js">if ( bp.isBetween( 'md', 'lg' ) ) {
+	// Do something
+}</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="py-5" id="examples">
+	<section class="py-5 d-none" id="examples">
 		<div class="container">
-			<div class="text-center">
-				<h2 class="mb-5">Examples</h2>
-			</div>
-			<div class="row">
+			<div class="row justify-content-center">
+				<div class="col my-5">
+					<h2>Examples</h2>
 
-				<div class="col-md-6">
-					<div class="card my-3">
-						<div class="card-header">
-							<code>up( name )</code> and <code>down( name )</code>
-						</div>
+					<div class="card mt-5">
+						<div class="card-header"><code>up( name, callback )</code></div>
 						<div class="card-body">
-							<pre>var example1 = document.querySelector( '#example-1' );
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Breakpoint:</span>
+								</div>
+								<select name="breakpoint" class="custom-select">
+									<option value="xs">xs</option>
+									<option value="sm">sm</option>
+									<option value="md">md</option>
+									<option value="lg" selected>lg</option>
+									<option value="xl">xl</option>
+								</select>
+							</div>
+							<pre><code class="lang-js">var target = document.querySelector( '#example-1 .counter' );
+var counter = 0;
 
 bp.up( 'lg', function() {
-    example1.classList.remove( 'bg-info' );
-    example1.classList.add( 'bg-success' );
-} );
-
-bp.down( 'lg', function() {
-    example1.classList.remove( 'bg-success' );
-    example1.classList.add( 'bg-info' );
-} );</pre>
-							<div class="p-4 text-white text-center" id="example-1">
-								I go green when screen is greater than `lg` and then blue when lower than `lg`.
+	target.innerText = ++counter;
+} );</code></pre>
+							<p class="my-3">The above example will count the number of times the callback is called for <strong>Large devices and up</strong>.</p>
+							<p>To see it in action just resize your screen...</p>
+							<div id="example-1" class="example-space">
+								<p>Large devices (desktops, 992px and up) counter</p>
+								<h3 class="counter">0</h3>
 							</div>
 							<script>
-								var example1 = document.querySelector( '#example-1' );
+							(function() {
+								var target = document.querySelector( '#example-1 .counter' );
+								var counter = 0;
+
 								bp.up( 'lg', function() {
-									example1.classList.remove( 'bg-info' );
-									example1.classList.add( 'bg-success' );
+									target.innerText = ++counter;
 								} );
-
-								bp.down( 'lg', function() {
-									example1.classList.remove( 'bg-success' );
-									example1.classList.add( 'bg-info' );
-								} );
+							})();
 							</script>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-6">
-					<div class="card my-3">
-						<div class="card-header">
-							<code>isBetween( lower, upper )</code>
-						</div>
+					<div class="card mt-5">
+						<div class="card-header"><code>down( name, callback )</code></div>
 						<div class="card-body">
-							<pre>var example2 = document.querySelector( '#example-2' );
+							<pre><code class="lang-js">var target = document.querySelector( '#example-2 .counter' );
+var counter = 0;
 
-var resizer = function() {
-    if ( bp.isBetween( 'md', 'lg' ) ) {
-        example2.innerHTML = 'The screen width <strong>IS</strong> between `md` and `lg`';
-        example2.classList.remove( 'bg-danger' );
-        example2.classList.add( 'bg-success' );
-    } else {
-        example2.innerHTML = 'The screen width is <strong>NOT</strong> between `md` and `lg`';
-        example2.classList.remove( 'bg-success' );
-        example2.classList.add( 'bg-danger' );
-    }
-};
-
-window.addEventListener( 'load', resizer );
-window.addEventListener( 'resize', resizer );</pre>
-							<div class="p-4 text-white text-center" id="example-2">
-								Javascript hasn't run.
+bp.up( 'md', function() {
+	target.innerText = ++counter;
+} );</code></pre>
+							<p class="my-3">The above example will count the number of times the callback is called for <strong>Medium devices and down</strong>.</p>
+							<p>To see it in action just resize your screen...</p>
+							<div id="example-2" class="example-space">
+								<p>Medium devices (tablets, 768px and down) counter</p>
+								<h3 class="counter">0</h3>
 							</div>
 							<script>
-								var example2 = document.querySelector( '#example-2' );
-								var resizer = function() {
-									if ( bp.isBetween( 'md', 'lg' ) ) {
-										example2.innerHTML = 'The screen width <strong>IS</strong> between `md` and `lg`';
-										example2.classList.remove( 'bg-danger' );
-										example2.classList.add( 'bg-success' );
-									} else {
-										example2.innerHTML = 'The screen width is <strong>NOT</strong> between `md` and `lg`';
-										example2.classList.remove( 'bg-success' );
-										example2.classList.add( 'bg-danger' );
-									}
-								};
-								window.addEventListener( 'load', resizer );
-								window.addEventListener( 'resize', resizer );
+							(function() {
+								var target = document.querySelector( '#example-2 .counter' );
+								var counter = 0;
+
+								bp.down( 'md', function() {
+									target.innerText = ++counter;
+								} );
+							})();
 							</script>
 						</div>
 					</div>
-				</div>
 
+					<div class="card mt-5">
+						<div class="card-header"><code>only( name, callback )</code></div>
+						<div class="card-body">
+							<pre><code class="lang-js">var target = document.querySelector( '#example-3 .counter' );
+var counter = 0;
+
+bp.only( 'lg', function() {
+	target.innerText = ++counter;
+} );</code></pre>
+							<p class="my-3">The above example will count the number of times the callback is called for <strong>Large devices and only</strong>.</p>
+							<p>To see it in action just resize your screen...</p>
+							<div id="example-3" class="example-space">
+								<p>Large devices (desktops, 992px to 1200px) counter</p>
+								<h3 class="counter">0</h3>
+							</div>
+							<script>
+							(function() {
+								var target = document.querySelector( '#example-3 .counter' );
+								var counter = 0;
+
+								bp.only( 'lg', function() {
+									target.innerText = ++counter;
+								} );
+							})();
+							</script>
+						</div>
+					</div>
+
+					<div class="card mt-5">
+						<div class="card-header"><code>between( name, callback )</code></div>
+						<div class="card-body">
+
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</section>
 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="js/min/home.js"></script>
 </body>
 </html>
